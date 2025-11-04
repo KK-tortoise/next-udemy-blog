@@ -1,5 +1,5 @@
 import { PrismaClient } from '../src/generated/prisma';
-import * as bcypt from 'bcryptjs'
+import * as bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -8,7 +8,7 @@ async function main() {
     await prisma.post.deleteMany()
     await prisma.user.deleteMany()
 
-    const hashedPassword = await bcypt.hash('password123',12)
+    const hashedPassword = await bcrypt.hash('password123',12)
 
 
     //ダミー画像URL
@@ -20,7 +20,7 @@ async function main() {
     //ユーザー作成
     const user = await prisma.user.create({
         data: {
-            email: 'teat@example.com',
+            email: 'test@example.com',
             name: 'Test User',
             password: hashedPassword,
             posts: {
